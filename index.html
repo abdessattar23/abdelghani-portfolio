@@ -72,55 +72,6 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    .cursor-ring,
-    .cursor-dot {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 1000;
-      pointer-events: none;
-      opacity: 0;
-      will-change: transform, opacity;
-    }
-
-    .cursor-ring-visual {
-      display: grid;
-      place-items: center;
-      width: 46px;
-      height: 46px;
-      border: 2px solid var(--ink);
-      background: transparent;
-      transform: translate(-50%, -50%);
-      will-change: transform;
-    }
-
-    .cursor-dot-visual {
-      display: block;
-      width: 10px;
-      height: 10px;
-      background: var(--accent);
-      transform: translate(-50%, -50%) rotate(45deg);
-      will-change: transform;
-    }
-
-    .cursor-label {
-      color: var(--ink);
-      font-family: var(--mono);
-      font-size: .52rem;
-      font-weight: 600;
-      letter-spacing: .06em;
-      line-height: 1;
-      text-transform: uppercase;
-      white-space: nowrap;
-      opacity: 0;
-    }
-
-    html.has-designer-cursor,
-    html.has-designer-cursor a,
-    html.has-designer-cursor button {
-      cursor: none !important;
-    }
-
     .skip-link {
       position: fixed;
       top: .75rem;
@@ -1025,10 +976,6 @@
   </style>
 </head>
 <body>
-  <div class="cursor-ring" aria-hidden="true">
-    <span class="cursor-ring-visual"><span class="cursor-label"></span></span>
-  </div>
-  <div class="cursor-dot" aria-hidden="true"><span class="cursor-dot-visual"></span></div>
   <a class="skip-link" href="#main" data-i18n="skip">Zum Inhalt springen</a>
 
   <header class="site-header">
@@ -1046,7 +993,7 @@
         <button class="language-button" type="button" data-language="en" aria-label="English" aria-pressed="false">EN</button>
         <button class="language-button" type="button" data-language="fr" aria-label="Français" aria-pressed="false">FR</button>
       </div>
-      <a class="header-mail" href="mailto:elyagoubiabdelghani3@gmail.com" data-cursor="MAIL" data-i18n="emailMe">E-Mail</a>
+      <a class="header-mail" href="mailto:elyagoubiabdelghani3@gmail.com" data-i18n="emailMe">E-Mail</a>
     </div>
   </header>
 
@@ -1104,7 +1051,7 @@
             <span data-i18n="liveWebsite">Live-Website</span> <span aria-hidden="true">↗</span>
           </a>
         </div>
-        <a class="project-visual" href="https://droiders.is-a.dev/" target="_blank" rel="noopener noreferrer" aria-label="Droiders-Website besuchen" data-cursor="LIVE" data-i18n-aria-label="visitDroiders">
+        <a class="project-visual" href="https://droiders.is-a.dev/" target="_blank" rel="noopener noreferrer" aria-label="Droiders-Website besuchen" data-i18n-aria-label="visitDroiders">
           <img src="assets/droiders-website.webp" alt="Startseite der Droiders-Website mit markanter Typografie in Schwarz, Weiß und Gelb" data-i18n-alt="droidersAlt" width="3200" height="1800" loading="lazy">
           <span class="project-visual-label" data-i18n="visitLive">Live-Website besuchen ↗</span>
         </a>
@@ -1122,7 +1069,7 @@
             <span data-i18n="liveWebsite">Live-Website</span> <span aria-hidden="true">↗</span>
           </a>
         </div>
-        <a class="project-visual" href="https://www.dohaophtalmologue.com/" target="_blank" rel="noopener noreferrer" aria-label="Website von Dr. Doha Hamidallah besuchen" data-cursor="LIVE" data-i18n-aria-label="visitDoha">
+        <a class="project-visual" href="https://www.dohaophtalmologue.com/" target="_blank" rel="noopener noreferrer" aria-label="Website von Dr. Doha Hamidallah besuchen" data-i18n-aria-label="visitDoha">
           <img src="assets/doha-website.webp" alt="Startseite der augenärztlichen Website von Dr. Doha Hamidallah" data-i18n-alt="dohaAlt" width="3200" height="1800" loading="lazy">
           <span class="project-visual-label" data-i18n="visitLive">Live-Website besuchen ↗</span>
         </a>
@@ -1140,7 +1087,7 @@
 
       <div class="document-grid">
         <article class="document-card reveal">
-          <a class="document-cover" href="assets/chef%20resume.pdf" target="_blank" rel="noopener" aria-label="PDF der Bewerbungsmappe Gastronomie öffnen" data-cursor="PDF" data-i18n-aria-label="openChef">
+          <a class="document-cover" href="assets/chef%20resume.pdf" target="_blank" rel="noopener" aria-label="PDF der Bewerbungsmappe Gastronomie öffnen" data-i18n-aria-label="openChef">
             <img src="assets/chef-resume-cover.webp" alt="Titelseite einer für Atif Bari gestalteten Bewerbungsmappe Gastronomie" data-i18n-alt="chefAlt" width="1787" height="2527" loading="lazy">
             <span class="document-cover-label" data-i18n="openPdf">PDF öffnen ↗</span>
           </a>
@@ -1154,7 +1101,7 @@
         </article>
 
         <article class="document-card reveal">
-          <a class="document-cover" href="assets/LERNPORTFOLIO.pdf" target="_blank" rel="noopener" aria-label="PDF des Lernportfolios Pflege öffnen" data-cursor="PDF" data-i18n-aria-label="openLearning">
+          <a class="document-cover" href="assets/LERNPORTFOLIO.pdf" target="_blank" rel="noopener" aria-label="PDF des Lernportfolios Pflege öffnen" data-i18n-aria-label="openLearning">
             <img src="assets/lernportfolio-cover.webp" alt="Titelseite eines klinischen Lernportfolios über Verdauung und Harnwege" data-i18n-alt="learningAlt" width="1787" height="2527" loading="lazy">
             <span class="document-cover-label" data-i18n="openPdf">PDF öffnen ↗</span>
           </a>
@@ -1190,7 +1137,7 @@
       </div>
       <div class="contact-action">
         <h2 id="contact-title" data-i18n="contactTitle">Machen wir es klar.</h2>
-        <a class="email-link" href="mailto:elyagoubiabdelghani3@gmail.com" data-cursor="MAIL">
+        <a class="email-link" href="mailto:elyagoubiabdelghani3@gmail.com">
           elyagoubiabdelghani3@gmail.com <span aria-hidden="true">↗</span>
         </a>
       </div>
@@ -1436,119 +1383,6 @@
       if (!window.gsap || !window.ScrollTrigger) return;
 
       gsap.registerPlugin(ScrollTrigger);
-
-      function initDesignerCursor() {
-        const ring = document.querySelector(".cursor-ring");
-        const dot = document.querySelector(".cursor-dot");
-        const ringVisual = document.querySelector(".cursor-ring-visual");
-        const dotVisual = document.querySelector(".cursor-dot-visual");
-        const label = document.querySelector(".cursor-label");
-        let cursorEnabled = false;
-        const reduceCursorMotion = window.matchMedia(
-          "(prefers-reduced-motion: reduce)"
-        ).matches;
-
-        const dotX = gsap.quickSetter(dot, "x", "px");
-        const dotY = gsap.quickSetter(dot, "y", "px");
-        const ringX = gsap.quickSetter(ring, "x", "px");
-        const ringY = gsap.quickSetter(ring, "y", "px");
-
-        window.addEventListener("pointermove", (event) => {
-          if (event.pointerType && event.pointerType !== "mouse") return;
-          if (!cursorEnabled) {
-            cursorEnabled = true;
-            document.documentElement.classList.add("has-designer-cursor");
-          }
-          dotX(event.clientX);
-          dotY(event.clientY);
-          ringX(event.clientX);
-          ringY(event.clientY);
-          gsap.to([ring, dot], {
-            autoAlpha: 1,
-            duration: reduceCursorMotion ? 0 : 0.18,
-            overwrite: "auto"
-          });
-        }, { passive: true });
-
-        document.querySelectorAll("a, button").forEach((element) => {
-          element.addEventListener("pointerenter", () => {
-            if (!cursorEnabled) return;
-            const cursorText = element.dataset.cursor || "";
-            label.textContent = cursorText;
-            gsap.to(ringVisual, {
-              scale: cursorText ? 1.6 : 1.28,
-              backgroundColor: "var(--signal)",
-              borderColor: "var(--ink)",
-              duration: reduceCursorMotion ? 0 : 0.24,
-              ease: "power3.out",
-              overwrite: "auto"
-            });
-            gsap.to(label, {
-              autoAlpha: cursorText ? 1 : 0,
-              duration: reduceCursorMotion ? 0 : 0.16,
-              overwrite: "auto"
-            });
-            gsap.to(dotVisual, {
-              scale: 0.5,
-              duration: reduceCursorMotion ? 0 : 0.18,
-              overwrite: "auto"
-            });
-          });
-
-          element.addEventListener("pointerleave", () => {
-            if (!cursorEnabled) return;
-            gsap.to(ringVisual, {
-              scale: 1,
-              backgroundColor: "transparent",
-              borderColor: "var(--ink)",
-              duration: reduceCursorMotion ? 0 : 0.24,
-              ease: "power3.out",
-              overwrite: "auto"
-            });
-            gsap.to(label, {
-              autoAlpha: 0,
-              duration: reduceCursorMotion ? 0 : 0.12,
-              overwrite: "auto"
-            });
-            gsap.to(dotVisual, {
-              scale: 1,
-              duration: reduceCursorMotion ? 0 : 0.18,
-              overwrite: "auto"
-            });
-          });
-        });
-
-        document.documentElement.addEventListener("mouseleave", () => {
-          if (!cursorEnabled) return;
-          gsap.to([ring, dot], {
-            autoAlpha: 0,
-            duration: reduceCursorMotion ? 0 : 0.18,
-            overwrite: "auto"
-          });
-        });
-
-        document.addEventListener("pointerdown", () => {
-          if (!cursorEnabled) return;
-          gsap.to(ringVisual, {
-            scale: 0.86,
-            duration: reduceCursorMotion ? 0 : 0.12,
-            overwrite: "auto"
-          });
-        });
-
-        document.addEventListener("pointerup", (event) => {
-          if (!cursorEnabled) return;
-          const interactive = event.target.closest?.("a, button");
-          gsap.to(ringVisual, {
-            scale: interactive ? (interactive.dataset.cursor ? 1.6 : 1.28) : 1,
-            duration: reduceCursorMotion ? 0 : 0.18,
-            ease: "power2.out",
-            overwrite: "auto"
-          });
-        });
-      }
-
-      initDesignerCursor();
 
       const motion = gsap.matchMedia();
       motion.add(
