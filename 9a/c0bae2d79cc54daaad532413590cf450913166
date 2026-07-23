@@ -1,0 +1,20 @@
+index.html
+  s_1f83313f874a2f::t_ce97e17a1dbcee 314,1584
+  s_1f83313f874a2f::t_5653f480ad72f5 1568
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "9ac0bae2d79cc54daaad532413590cf450913166",
+  "prompts": {},
+  "sessions": {
+    "s_1f83313f874a2f": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "7e026e88-28bd-468e-a69d-c69067763240",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Mohammed Abdessetar Elyagoubi <mohammedabdessetar.elyagoubi@sofrecom.com>"
+    }
+  }
+}
