@@ -311,7 +311,7 @@
     h1 {
       max-width: 9ch;
       margin: 1.5rem 0 2rem;
-      overflow: hidden;
+      overflow: visible;
       padding-bottom: .08em;
       font-family: var(--serif);
       font-size: clamp(4.6rem, 8.7vw, 9rem);
@@ -1565,29 +1565,7 @@
         },
         (context) => {
           const { isDesktop, reduceMotion } = context.conditions;
-          if (reduceMotion) {
-            gsap.from(
-              ".site-header, .eyebrow, .hero-title-line, #hero-title em, .hero-intro, .portrait",
-              {
-                opacity: 0.55,
-                duration: 0.32,
-                stagger: 0.035,
-                ease: "none"
-              }
-            );
-
-            ScrollTrigger.batch(".reveal", {
-              start: "top 95%",
-              once: true,
-              onEnter: (elements) => gsap.from(elements, {
-                opacity: 0.6,
-                duration: 0.24,
-                stagger: 0.03,
-                ease: "none"
-              })
-            });
-            return;
-          }
+          if (reduceMotion) return;
 
           const heroTimeline = gsap.timeline({
             defaults: { duration: 0.7, ease: "power3.out" }
@@ -1596,35 +1574,29 @@
           heroTimeline
             .from(".site-header", {
               y: -24,
-              opacity: 0.4,
               duration: 0.55
             })
             .from(".eyebrow", {
               x: -24,
-              opacity: 0.4,
               duration: 0.45
             }, "-=0.2")
             .from(".hero-title-line, #hero-title em", {
-              y: 48,
-              opacity: 0.15,
+              y: 24,
               stagger: 0.12,
               duration: 0.85,
               ease: "power4.out"
             }, "-=0.12")
             .from(".hero-intro", {
               y: 24,
-              opacity: 0.35,
               duration: 0.6
             }, "-=0.5")
             .from(".hero-bottom .text-link", {
               x: 24,
-              opacity: 0.35,
               duration: 0.5
             }, "<0.08")
             .from(".portrait", {
               xPercent: isDesktop ? 8 : 0,
               yPercent: isDesktop ? 0 : 4,
-              opacity: 0.45,
               duration: 0.95
             }, 0.12)
             .from(".portrait figcaption", {
@@ -1643,17 +1615,14 @@
           })
             .from("#about .section-label", {
               x: -28,
-              opacity: 0.25,
               duration: 0.5
             })
             .from("#about .intro-statement", {
               y: 48,
-              opacity: 0.25,
               duration: 0.8
             }, "-=0.25")
             .from("#about .intro-note", {
               y: 28,
-              opacity: 0.25,
               duration: 0.55
             }, "-=0.4");
 
@@ -1667,12 +1636,10 @@
           })
             .from(".section-heading .section-label", {
               x: -28,
-              opacity: 0.25,
               duration: 0.5
             })
             .from(".section-heading h2", {
               y: 52,
-              opacity: 0.25,
               duration: 0.8
             }, "-=0.28");
 
@@ -1692,13 +1659,11 @@
             })
               .from(projectDetails, {
                 y: 26,
-                opacity: 0.25,
                 stagger: 0.08,
                 duration: 0.58
               })
               .from(visual, {
                 y: 48,
-                opacity: 0.35,
                 duration: 0.8
               }, "-=0.25");
 
@@ -1731,13 +1696,11 @@
           })
             .from("#documents .documents-header > *", {
               y: 42,
-              opacity: 0.25,
               stagger: 0.12,
               duration: 0.68
             })
             .from("#documents .document-card", {
               y: 54,
-              opacity: 0.3,
               stagger: 0.14,
               duration: 0.78
             }, "-=0.28");
@@ -1752,17 +1715,14 @@
           })
             .from("#experience .section-label", {
               x: -28,
-              opacity: 0.25,
               duration: 0.5
             })
             .from("#experience h2", {
               y: 48,
-              opacity: 0.25,
               duration: 0.78
             }, "-=0.25")
             .from("#experience .experience-detail", {
               y: 28,
-              opacity: 0.25,
               duration: 0.58
             }, "-=0.38");
 
@@ -1776,24 +1736,20 @@
           })
             .from("#contact .contact-copy > *", {
               x: -28,
-              opacity: 0.25,
               stagger: 0.1,
               duration: 0.55
             })
             .from("#contact h2", {
               y: 52,
-              opacity: 0.25,
               duration: 0.8
             }, "-=0.35")
             .from("#contact .email-link", {
               y: 22,
-              opacity: 0.25,
               duration: 0.55
             }, "-=0.35");
 
           gsap.from(".site-footer > span", {
             y: 14,
-            opacity: 0.3,
             stagger: 0.08,
             duration: 0.5,
             ease: "power2.out",
