@@ -1,0 +1,21 @@
+assets/ScrollTrigger.min.js
+  s_1f83313f874a2f::t_0dfa0fd80f9fbc 1-11
+assets/gsap.min.js
+  s_1f83313f874a2f::t_983b7d65ff285c 1-11
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "c5df85b4d690825a0c07c8bf37b43950ec0841f4",
+  "prompts": {},
+  "sessions": {
+    "s_1f83313f874a2f": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "7e026e88-28bd-468e-a69d-c69067763240",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "Mohammed Abdessetar Elyagoubi <mohammedabdessetar.elyagoubi@sofrecom.com>"
+    }
+  }
+}
