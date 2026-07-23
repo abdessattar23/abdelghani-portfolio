@@ -83,19 +83,24 @@
       will-change: transform, opacity;
     }
 
-    .cursor-ring {
+    .cursor-ring-visual {
       display: grid;
       place-items: center;
       width: 46px;
       height: 46px;
       border: 2px solid var(--ink);
       background: transparent;
+      transform: translate(-50%, -50%);
+      will-change: transform;
     }
 
-    .cursor-dot {
+    .cursor-dot-visual {
+      display: block;
       width: 10px;
       height: 10px;
       background: var(--accent);
+      transform: translate(-50%, -50%) rotate(45deg);
+      will-change: transform;
     }
 
     .cursor-label {
@@ -1020,8 +1025,10 @@
   </style>
 </head>
 <body>
-  <div class="cursor-ring" aria-hidden="true"><span class="cursor-label"></span></div>
-  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true">
+    <span class="cursor-ring-visual"><span class="cursor-label"></span></span>
+  </div>
+  <div class="cursor-dot" aria-hidden="true"><span class="cursor-dot-visual"></span></div>
   <a class="skip-link" href="#main" data-i18n="skip">Zum Inhalt springen</a>
 
   <header class="site-header">
@@ -1433,14 +1440,13 @@
       function initDesignerCursor() {
         const ring = document.querySelector(".cursor-ring");
         const dot = document.querySelector(".cursor-dot");
+        const ringVisual = document.querySelector(".cursor-ring-visual");
+        const dotVisual = document.querySelector(".cursor-dot-visual");
         const label = document.querySelector(".cursor-label");
         let cursorEnabled = false;
         const reduceCursorMotion = window.matchMedia(
           "(prefers-reduced-motion: reduce)"
         ).matches;
-
-        gsap.set([ring, dot], { xPercent: -50, yPercent: -50 });
-        gsap.set(dot, { rotation: 45 });
 
         const dotX = gsap.quickSetter(dot, "x", "px");
         const dotY = gsap.quickSetter(dot, "y", "px");
@@ -1469,7 +1475,7 @@
             if (!cursorEnabled) return;
             const cursorText = element.dataset.cursor || "";
             label.textContent = cursorText;
-            gsap.to(ring, {
+            gsap.to(ringVisual, {
               scale: cursorText ? 1.6 : 1.28,
               backgroundColor: "var(--signal)",
               borderColor: "var(--ink)",
@@ -1482,7 +1488,7 @@
               duration: reduceCursorMotion ? 0 : 0.16,
               overwrite: "auto"
             });
-            gsap.to(dot, {
+            gsap.to(dotVisual, {
               scale: 0.5,
               duration: reduceCursorMotion ? 0 : 0.18,
               overwrite: "auto"
@@ -1491,7 +1497,7 @@
 
           element.addEventListener("pointerleave", () => {
             if (!cursorEnabled) return;
-            gsap.to(ring, {
+            gsap.to(ringVisual, {
               scale: 1,
               backgroundColor: "transparent",
               borderColor: "var(--ink)",
@@ -1504,7 +1510,7 @@
               duration: reduceCursorMotion ? 0 : 0.12,
               overwrite: "auto"
             });
-            gsap.to(dot, {
+            gsap.to(dotVisual, {
               scale: 1,
               duration: reduceCursorMotion ? 0 : 0.18,
               overwrite: "auto"
@@ -1523,7 +1529,7 @@
 
         document.addEventListener("pointerdown", () => {
           if (!cursorEnabled) return;
-          gsap.to(ring, {
+          gsap.to(ringVisual, {
             scale: 0.86,
             duration: reduceCursorMotion ? 0 : 0.12,
             overwrite: "auto"
@@ -1533,7 +1539,7 @@
         document.addEventListener("pointerup", (event) => {
           if (!cursorEnabled) return;
           const interactive = event.target.closest?.("a, button");
-          gsap.to(ring, {
+          gsap.to(ringVisual, {
             scale: interactive ? (interactive.dataset.cursor ? 1.6 : 1.28) : 1,
             duration: reduceCursorMotion ? 0 : 0.18,
             ease: "power2.out",
