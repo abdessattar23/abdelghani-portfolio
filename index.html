@@ -88,15 +88,14 @@
       place-items: center;
       width: 46px;
       height: 46px;
-      border: 2px solid var(--accent);
-      background: rgba(232, 236, 233, .08);
+      border: 2px solid var(--ink);
+      background: transparent;
     }
 
     .cursor-dot {
-      width: 8px;
-      height: 8px;
-      border: 1px solid var(--ink);
-      background: var(--signal);
+      width: 10px;
+      height: 10px;
+      background: var(--accent);
     }
 
     .cursor-label {
@@ -111,19 +110,10 @@
       opacity: 0;
     }
 
-    @media (hover: hover) and (pointer: fine) {
-      html.has-designer-cursor,
-      html.has-designer-cursor a,
-      html.has-designer-cursor button {
-        cursor: none !important;
-      }
-    }
-
-    @media (hover: none), (pointer: coarse) {
-      .cursor-ring,
-      .cursor-dot {
-        display: none;
-      }
+    html.has-designer-cursor,
+    html.has-designer-cursor a,
+    html.has-designer-cursor button {
+      cursor: none !important;
     }
 
     .skip-link {
@@ -1441,16 +1431,14 @@
       gsap.registerPlugin(ScrollTrigger);
 
       function initDesignerCursor() {
-        if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
-
         const ring = document.querySelector(".cursor-ring");
         const dot = document.querySelector(".cursor-dot");
         const label = document.querySelector(".cursor-label");
+        let cursorEnabled = false;
         const reduceCursorMotion = window.matchMedia(
           "(prefers-reduced-motion: reduce)"
         ).matches;
 
-        document.documentElement.classList.add("has-designer-cursor");
         gsap.set([ring, dot], { xPercent: -50, yPercent: -50 });
         gsap.set(dot, { rotation: 45 });
 
@@ -1472,6 +1460,11 @@
         });
 
         window.addEventListener("pointermove", (event) => {
+          if (event.pointerType && event.pointerType !== "mouse") return;
+          if (!cursorEnabled) {
+            cursorEnabled = true;
+            document.documentElement.classList.add("has-designer-cursor");
+          }
           dotX(event.clientX);
           dotY(event.clientY);
           ringX(event.clientX);
@@ -1485,6 +1478,7 @@
 
         document.querySelectorAll("a, button").forEach((element) => {
           element.addEventListener("pointerenter", () => {
+            if (!cursorEnabled) return;
             const cursorText = element.dataset.cursor || "";
             label.textContent = cursorText;
             gsap.to(ring, {
@@ -1508,10 +1502,11 @@
           });
 
           element.addEventListener("pointerleave", () => {
+            if (!cursorEnabled) return;
             gsap.to(ring, {
               scale: 1,
-              backgroundColor: "rgba(232, 236, 233, 0.08)",
-              borderColor: "var(--accent)",
+              backgroundColor: "transparent",
+              borderColor: "var(--ink)",
               duration: reduceCursorMotion ? 0 : 0.24,
               ease: "power3.out",
               overwrite: "auto"
@@ -1530,6 +1525,7 @@
         });
 
         document.documentElement.addEventListener("mouseleave", () => {
+          if (!cursorEnabled) return;
           gsap.to([ring, dot], {
             autoAlpha: 0,
             duration: reduceCursorMotion ? 0 : 0.18,
@@ -1538,6 +1534,7 @@
         });
 
         document.addEventListener("pointerdown", () => {
+          if (!cursorEnabled) return;
           gsap.to(ring, {
             scale: 0.86,
             duration: reduceCursorMotion ? 0 : 0.12,
@@ -1546,6 +1543,7 @@
         });
 
         document.addEventListener("pointerup", (event) => {
+          if (!cursorEnabled) return;
           const interactive = event.target.closest?.("a, button");
           gsap.to(ring, {
             scale: interactive ? (interactive.dataset.cursor ? 1.6 : 1.28) : 1,
@@ -1571,7 +1569,7 @@
             gsap.from(
               ".site-header, .eyebrow, .hero-title-line, #hero-title em, .hero-intro, .portrait",
               {
-                autoAlpha: 0,
+                opacity: 0.55,
                 duration: 0.32,
                 stagger: 0.035,
                 ease: "none"
@@ -1582,7 +1580,7 @@
               start: "top 95%",
               once: true,
               onEnter: (elements) => gsap.from(elements, {
-                autoAlpha: 0,
+                opacity: 0.6,
                 duration: 0.24,
                 stagger: 0.03,
                 ease: "none"
@@ -1598,35 +1596,35 @@
           heroTimeline
             .from(".site-header", {
               y: -24,
-              autoAlpha: 0,
+              opacity: 0.4,
               duration: 0.55
             })
             .from(".eyebrow", {
               x: -24,
-              autoAlpha: 0,
+              opacity: 0.4,
               duration: 0.45
             }, "-=0.2")
             .from(".hero-title-line, #hero-title em", {
-              yPercent: 110,
-              autoAlpha: 0,
+              y: 48,
+              opacity: 0.15,
               stagger: 0.12,
               duration: 0.85,
               ease: "power4.out"
             }, "-=0.12")
             .from(".hero-intro", {
               y: 24,
-              autoAlpha: 0,
+              opacity: 0.35,
               duration: 0.6
             }, "-=0.5")
             .from(".hero-bottom .text-link", {
               x: 24,
-              autoAlpha: 0,
+              opacity: 0.35,
               duration: 0.5
             }, "<0.08")
             .from(".portrait", {
               xPercent: isDesktop ? 8 : 0,
               yPercent: isDesktop ? 0 : 4,
-              autoAlpha: 0,
+              opacity: 0.45,
               duration: 0.95
             }, 0.12)
             .from(".portrait figcaption", {
@@ -1645,17 +1643,17 @@
           })
             .from("#about .section-label", {
               x: -28,
-              autoAlpha: 0,
+              opacity: 0.25,
               duration: 0.5
             })
             .from("#about .intro-statement", {
               y: 48,
-              autoAlpha: 0,
+              opacity: 0.25,
               duration: 0.8
             }, "-=0.25")
             .from("#about .intro-note", {
               y: 28,
-              autoAlpha: 0,
+              opacity: 0.25,
               duration: 0.55
             }, "-=0.4");
 
@@ -1669,12 +1667,12 @@
           })
             .from(".section-heading .section-label", {
               x: -28,
-              autoAlpha: 0,
+              opacity: 0.25,
               duration: 0.5
             })
             .from(".section-heading h2", {
               y: 52,
-              autoAlpha: 0,
+              opacity: 0.25,
               duration: 0.8
             }, "-=0.28");
 
@@ -1694,13 +1692,13 @@
             })
               .from(projectDetails, {
                 y: 26,
-                autoAlpha: 0,
+                opacity: 0.25,
                 stagger: 0.08,
                 duration: 0.58
               })
               .from(visual, {
                 y: 48,
-                autoAlpha: 0,
+                opacity: 0.35,
                 duration: 0.8
               }, "-=0.25");
 
@@ -1733,13 +1731,13 @@
           })
             .from("#documents .documents-header > *", {
               y: 42,
-              autoAlpha: 0,
+              opacity: 0.25,
               stagger: 0.12,
               duration: 0.68
             })
             .from("#documents .document-card", {
               y: 54,
-              autoAlpha: 0,
+              opacity: 0.3,
               stagger: 0.14,
               duration: 0.78
             }, "-=0.28");
@@ -1754,17 +1752,17 @@
           })
             .from("#experience .section-label", {
               x: -28,
-              autoAlpha: 0,
+              opacity: 0.25,
               duration: 0.5
             })
             .from("#experience h2", {
               y: 48,
-              autoAlpha: 0,
+              opacity: 0.25,
               duration: 0.78
             }, "-=0.25")
             .from("#experience .experience-detail", {
               y: 28,
-              autoAlpha: 0,
+              opacity: 0.25,
               duration: 0.58
             }, "-=0.38");
 
@@ -1778,24 +1776,24 @@
           })
             .from("#contact .contact-copy > *", {
               x: -28,
-              autoAlpha: 0,
+              opacity: 0.25,
               stagger: 0.1,
               duration: 0.55
             })
             .from("#contact h2", {
               y: 52,
-              autoAlpha: 0,
+              opacity: 0.25,
               duration: 0.8
             }, "-=0.35")
             .from("#contact .email-link", {
               y: 22,
-              autoAlpha: 0,
+              opacity: 0.25,
               duration: 0.55
             }, "-=0.35");
 
           gsap.from(".site-footer > span", {
             y: 14,
-            autoAlpha: 0,
+            opacity: 0.3,
             stagger: 0.08,
             duration: 0.5,
             ease: "power2.out",
