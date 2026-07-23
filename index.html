@@ -1442,22 +1442,10 @@
         gsap.set([ring, dot], { xPercent: -50, yPercent: -50 });
         gsap.set(dot, { rotation: 45 });
 
-        const dotX = gsap.quickTo(dot, "x", {
-          duration: reduceCursorMotion ? 0 : 0.08,
-          ease: "power3.out"
-        });
-        const dotY = gsap.quickTo(dot, "y", {
-          duration: reduceCursorMotion ? 0 : 0.08,
-          ease: "power3.out"
-        });
-        const ringX = gsap.quickTo(ring, "x", {
-          duration: reduceCursorMotion ? 0 : 0.28,
-          ease: "power3.out"
-        });
-        const ringY = gsap.quickTo(ring, "y", {
-          duration: reduceCursorMotion ? 0 : 0.28,
-          ease: "power3.out"
-        });
+        const dotX = gsap.quickSetter(dot, "x", "px");
+        const dotY = gsap.quickSetter(dot, "y", "px");
+        const ringX = gsap.quickSetter(ring, "x", "px");
+        const ringY = gsap.quickSetter(ring, "y", "px");
 
         window.addEventListener("pointermove", (event) => {
           if (event.pointerType && event.pointerType !== "mouse") return;
