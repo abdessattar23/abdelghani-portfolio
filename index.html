@@ -1,0 +1,1846 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portfolio von Abdelghani El Yagoubi, Digitaldesigner für Websites und Editorial Design.">
+  <meta name="theme-color" content="#e8ece9">
+  <title>Abdelghani El Yagoubi — Digitaldesigner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@300;400;500;600;700;800;900&family=Chivo+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #e8ece9;
+      --paper-deep: #d4ded8;
+      --ink: #10262e;
+      --muted: #52656b;
+      --line: #8fa3a1;
+      --accent: #1557d6;
+      --signal: #d7e458;
+      --deep: #0b2028;
+      --white: #f6faf7;
+      --sans: "Chivo", "Arial Narrow", sans-serif;
+      --serif: "Chivo", "Arial Narrow", sans-serif;
+      --mono: "Chivo Mono", Consolas, monospace;
+      --page-pad: clamp(1.25rem, 3.2vw, 3.5rem);
+      --ease: cubic-bezier(.2, .75, .25, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--paper);
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.55;
+      overflow-x: clip;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      display: none;
+    }
+
+    ::selection {
+      background: var(--signal);
+      color: var(--ink);
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .cursor-ring,
+    .cursor-dot {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      pointer-events: none;
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+
+    .cursor-ring {
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      border: 2px solid var(--accent);
+      background: rgba(232, 236, 233, .08);
+    }
+
+    .cursor-dot {
+      width: 8px;
+      height: 8px;
+      border: 1px solid var(--ink);
+      background: var(--signal);
+    }
+
+    .cursor-label {
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: .52rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      line-height: 1;
+      text-transform: uppercase;
+      white-space: nowrap;
+      opacity: 0;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      html.has-designer-cursor,
+      html.has-designer-cursor a,
+      html.has-designer-cursor button {
+        cursor: none !important;
+      }
+    }
+
+    @media (hover: none), (pointer: coarse) {
+      .cursor-ring,
+      .cursor-dot {
+        display: none;
+      }
+    }
+
+    .skip-link {
+      position: fixed;
+      top: .75rem;
+      left: .75rem;
+      z-index: 200;
+      transform: translateY(-180%);
+      padding: .7rem 1rem;
+      background: var(--ink);
+      color: var(--white);
+      font-family: var(--mono);
+      font-size: .75rem;
+      transition: transform .2s ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .site-header {
+      position: relative;
+      z-index: 20;
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      align-items: center;
+      min-height: 82px;
+      border-bottom: 2px solid var(--ink);
+      padding: 0 var(--page-pad);
+      background: rgba(232, 236, 233, .97);
+    }
+
+    .wordmark {
+      width: fit-content;
+      font-family: var(--mono);
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: -.03em;
+    }
+
+    .wordmark span {
+      display: inline-grid;
+      place-items: center;
+      width: 2.75rem;
+      height: 2.75rem;
+      margin-right: .65rem;
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    .primary-nav {
+      display: flex;
+      justify-content: center;
+      gap: clamp(1.25rem, 3vw, 3rem);
+      font-family: var(--mono);
+      font-size: .75rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .primary-nav a,
+    .header-mail {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 44px;
+      min-height: 44px;
+    }
+
+    .primary-nav a::after,
+    .header-mail::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: .35rem;
+      left: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform .3s var(--ease);
+    }
+
+    .primary-nav a:hover::after,
+    .primary-nav a:focus-visible::after,
+    .header-mail:hover::after,
+    .header-mail:focus-visible::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .header-mail {
+      font-family: var(--mono);
+      font-size: .72rem;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      justify-self: end;
+      gap: clamp(.75rem, 1.7vw, 1.5rem);
+    }
+
+    .language-switcher {
+      display: inline-flex;
+      border: 2px solid var(--ink);
+      background: var(--paper);
+    }
+
+    .language-button {
+      min-width: 44px;
+      height: 44px;
+      border: 0;
+      border-right: 2px solid var(--ink);
+      padding: 0 .45rem;
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      font-family: var(--mono);
+      font-size: .7rem;
+      letter-spacing: .04em;
+      transition: background-color .2s ease, color .2s ease;
+    }
+
+    .language-button:last-child {
+      border-right: 0;
+    }
+
+    .language-button:hover,
+    .language-button:focus-visible {
+      background: var(--paper-deep);
+    }
+
+    .language-button[aria-pressed="true"] {
+      background: var(--signal);
+      color: var(--ink);
+    }
+
+    .language-button:focus-visible {
+      position: relative;
+      z-index: 1;
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.12fr) minmax(400px, .88fr);
+      min-height: calc(100svh - 82px);
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-width: 0;
+      padding: clamp(3rem, 7vh, 6rem) var(--page-pad) 2.25rem;
+    }
+
+    .eyebrow,
+    .section-label,
+    .meta,
+    .project-index {
+      font-family: var(--mono);
+      font-size: .75rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .section-label {
+      display: inline-flex;
+      width: fit-content;
+      padding: .45rem .6rem;
+      background: var(--signal);
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin: 0;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: .7rem;
+      height: .7rem;
+      background: var(--signal);
+    }
+
+    h1 {
+      max-width: 9ch;
+      margin: 1.5rem 0 2rem;
+      overflow: hidden;
+      padding-bottom: .08em;
+      font-family: var(--serif);
+      font-size: clamp(4.6rem, 8.7vw, 9rem);
+      font-weight: 800;
+      letter-spacing: -.075em;
+      line-height: .82;
+      text-transform: uppercase;
+    }
+
+    h1 em {
+      display: block;
+      color: var(--accent);
+      font-style: normal;
+      font-weight: 800;
+    }
+
+    .hero-title-line {
+      display: block;
+    }
+
+    .hero-title-line,
+    h1 em,
+    .portrait {
+      will-change: transform, opacity;
+    }
+
+    .hero-bottom {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: end;
+      gap: 2rem;
+      padding-top: 2rem;
+      border-top: 2px solid var(--line);
+    }
+
+    .hero-intro {
+      max-width: 37rem;
+      margin: 0;
+      font-size: clamp(1rem, 1.3vw, 1.2rem);
+      text-wrap: pretty;
+    }
+
+    .text-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .75rem;
+      min-height: 44px;
+      padding-bottom: .25rem;
+      border-bottom: 2px solid currentColor;
+      font-family: var(--mono);
+      font-size: .75rem;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .text-link span {
+      transition: transform .3s var(--ease);
+    }
+
+    .text-link:hover span,
+    .text-link:focus-visible span {
+      transform: translate(4px, -2px);
+    }
+
+    .portrait {
+      position: relative;
+      min-height: 38rem;
+      margin: 0;
+      overflow: hidden;
+      border-left: 2px solid var(--ink);
+      background: var(--accent);
+    }
+
+    .portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 52% center;
+    }
+
+    .portrait figcaption {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: .9rem 1.1rem;
+      border-top: 2px solid var(--ink);
+      background: var(--signal);
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: .7rem;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .intro-band {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 1rem;
+      padding: clamp(5rem, 10vw, 10rem) var(--page-pad);
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .intro-band .section-label {
+      grid-column: 1 / 3;
+      margin: .35rem 0 0;
+      align-self: start;
+    }
+
+    .intro-statement {
+      grid-column: 4 / 11;
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 4.8vw, 5rem);
+      font-weight: 700;
+      letter-spacing: -.055em;
+      line-height: .94;
+      text-wrap: balance;
+    }
+
+    .intro-note {
+      grid-column: 11 / 13;
+      align-self: end;
+      margin: 0 0 .5rem;
+      color: var(--muted);
+      font-size: 1rem;
+      text-wrap: pretty;
+    }
+
+    .work-section {
+      padding: 0 var(--page-pad);
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: end;
+      gap: 1.5rem;
+      padding: clamp(4rem, 8vw, 7rem) 0 2rem;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(3.7rem, 8vw, 8rem);
+      font-weight: 800;
+      letter-spacing: -.075em;
+      line-height: .82;
+      text-transform: uppercase;
+    }
+
+    .project {
+      padding: 2rem 0 clamp(5rem, 9vw, 9rem);
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .project-head {
+      display: grid;
+      grid-template-columns: .4fr 2fr 1.35fr auto;
+      gap: 1.5rem;
+      align-items: start;
+      margin-bottom: 2rem;
+    }
+
+    .project h3 {
+      margin: -.2rem 0 0;
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 4.25rem);
+      font-weight: 700;
+      letter-spacing: -.06em;
+      line-height: .9;
+    }
+
+    .project-index {
+      color: var(--accent);
+      font-family: var(--sans);
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -.06em;
+      line-height: 1;
+    }
+
+    .project-summary {
+      max-width: 29rem;
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .project-visual {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      border: 2px solid var(--ink);
+      background: var(--ink);
+    }
+
+    .project-visual-label {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      padding: .75rem 1rem;
+      border-top: 2px solid var(--ink);
+      border-left: 2px solid var(--ink);
+      background: var(--signal);
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: .7rem;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      transform: translateY(100%);
+      transition: transform .35s var(--ease);
+    }
+
+    .project-visual img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      transition: opacity .4s ease;
+    }
+
+    .project-visual:hover .project-visual-label,
+    .project-visual:focus-visible .project-visual-label {
+      transform: translateY(0);
+    }
+
+    .project-visual:hover img,
+    .project-visual:focus-visible img {
+      opacity: .92;
+    }
+
+    .documents {
+      padding: clamp(5rem, 9vw, 9rem) var(--page-pad);
+      background: var(--deep);
+      color: var(--paper);
+    }
+
+    .documents-header {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      align-items: end;
+      gap: 2rem;
+      margin-bottom: clamp(3rem, 6vw, 6rem);
+    }
+
+    .documents-header h2 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(3.5rem, 7.5vw, 7.5rem);
+      font-weight: 800;
+      letter-spacing: -.075em;
+      line-height: .82;
+      text-transform: uppercase;
+    }
+
+    .documents-header p {
+      max-width: 30rem;
+      margin: 0 0 .4rem auto;
+      color: #b8c7c6;
+      font-size: 1rem;
+    }
+
+    .document-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(1.5rem, 4vw, 4rem);
+    }
+
+    .document-card {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      border-top: 2px solid #31505a;
+      padding-top: 1.25rem;
+    }
+
+    .document-cover {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 34rem;
+      overflow: hidden;
+      background: #17343e;
+    }
+
+    .document-cover img {
+      width: min(72%, 31rem);
+      height: auto;
+      max-height: 44rem;
+      object-fit: contain;
+      box-shadow: none;
+      transition: transform .55s var(--ease);
+    }
+
+    .document-cover-label {
+      position: absolute;
+      right: 1rem;
+      bottom: 1rem;
+      padding: .75rem .9rem;
+      background: var(--signal);
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: .7rem;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .document-card:hover .document-cover img,
+    .document-card:focus-within .document-cover img {
+      transform: rotate(-.65deg) scale(1.015);
+    }
+
+    .document-meta {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      align-items: end;
+      padding-top: 1.25rem;
+    }
+
+    .document-meta h3 {
+      margin: 0 0 .35rem;
+      font-family: var(--serif);
+      font-size: clamp(1.65rem, 3vw, 2.7rem);
+      font-weight: 700;
+      letter-spacing: -.05em;
+      line-height: .95;
+    }
+
+    .document-meta p {
+      margin: 0;
+      color: #b8c7c6;
+      font-size: .9rem;
+    }
+
+    .document-meta .meta {
+      color: #b8c7c6;
+      white-space: nowrap;
+    }
+
+    .experience {
+      display: grid;
+      grid-template-columns: .8fr 2fr 1fr;
+      gap: 2rem;
+      padding: clamp(5rem, 9vw, 9rem) var(--page-pad);
+      border-bottom: 2px solid var(--ink);
+      background: var(--paper-deep);
+    }
+
+    .experience-main h2 {
+      max-width: 10ch;
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(3.5rem, 6.8vw, 7rem);
+      font-weight: 800;
+      letter-spacing: -.075em;
+      line-height: .85;
+      text-transform: uppercase;
+    }
+
+    .experience-main h2 .accent-line {
+      color: var(--accent);
+    }
+
+    .experience-detail {
+      align-self: end;
+      padding-bottom: .5rem;
+    }
+
+    .experience-detail strong {
+      display: block;
+      margin-bottom: .4rem;
+      font-family: var(--sans);
+      font-size: 1.65rem;
+      font-weight: 700;
+    }
+
+    .experience-detail p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .contact {
+      display: grid;
+      grid-template-columns: 1fr 2.8fr;
+      gap: 2rem;
+      padding: clamp(5rem, 10vw, 10rem) var(--page-pad);
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    .contact-copy p {
+      max-width: 24rem;
+      margin: 1.2rem 0 0;
+      font-size: 1rem;
+    }
+
+    .contact-action {
+      align-self: end;
+    }
+
+    .contact-action h2 {
+      max-width: 9ch;
+      margin: 0 0 2.5rem;
+      font-family: var(--serif);
+      font-size: clamp(4rem, 7.6vw, 8rem);
+      font-weight: 800;
+      letter-spacing: -.075em;
+      line-height: .84;
+      text-transform: uppercase;
+    }
+
+    .email-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      max-width: 100%;
+      min-height: 44px;
+      padding-bottom: .5rem;
+      border-bottom: 2px solid var(--signal);
+      font-family: var(--mono);
+      font-size: clamp(.8rem, 1.45vw, 1.25rem);
+      overflow-wrap: anywhere;
+    }
+
+    .email-link span {
+      flex: 0 0 auto;
+      transition: transform .3s var(--ease);
+    }
+
+    .email-link:hover span,
+    .email-link:focus-visible span {
+      transform: translate(5px, -3px);
+    }
+
+    .site-footer {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 1rem;
+      align-items: center;
+      min-height: 82px;
+      padding: 0 var(--page-pad);
+      background: var(--deep);
+      color: #a9b9b7;
+      font-family: var(--mono);
+      font-size: .7rem;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .site-footer span:nth-child(2) {
+      color: var(--signal);
+    }
+
+    .site-footer span:last-child {
+      justify-self: end;
+    }
+
+    .reveal {
+      opacity: 1;
+      transform: none;
+    }
+
+    a:focus-visible {
+      outline: 3px solid var(--signal);
+      outline-offset: 5px;
+    }
+
+    @media (max-width: 980px) {
+      .site-header {
+        grid-template-columns: auto 1fr auto;
+      }
+
+      .primary-nav {
+        justify-content: center;
+      }
+
+      .header-mail {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-copy {
+        min-height: 70svh;
+      }
+
+      .portrait {
+        min-height: 65svh;
+        border-top: 2px solid var(--ink);
+        border-left: 0;
+      }
+
+      .intro-band .section-label {
+        grid-column: 1 / 4;
+      }
+
+      .intro-statement {
+        grid-column: 4 / 13;
+      }
+
+      .intro-note {
+        grid-column: 4 / 10;
+        margin-top: 2rem;
+      }
+
+      .project-head {
+        grid-template-columns: .5fr 1.6fr 1.4fr;
+      }
+
+      .project-head .text-link {
+        grid-column: 2;
+        margin-top: .75rem;
+        width: fit-content;
+      }
+
+      .document-cover {
+        min-height: 28rem;
+      }
+
+      .experience {
+        grid-template-columns: .6fr 2fr;
+      }
+
+      .experience-detail {
+        grid-column: 2;
+      }
+
+      .contact {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-action {
+        margin-top: 4rem;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .site-header {
+        grid-template-columns: 1fr auto;
+        min-height: 128px;
+        padding-top: .75rem;
+      }
+
+      .wordmark {
+        font-size: 0;
+      }
+
+      .wordmark span {
+        margin: 0;
+        width: 44px;
+        height: 44px;
+        font-size: .75rem;
+      }
+
+      .primary-nav {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        justify-content: space-between;
+        gap: .75rem;
+        width: 100%;
+        padding: .65rem 0 .75rem;
+        font-size: .61rem;
+      }
+
+      .header-actions {
+        grid-column: 2;
+        grid-row: 1;
+      }
+
+      .language-button {
+        min-width: 44px;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-copy {
+        min-height: 38rem;
+        padding-top: 3.25rem;
+      }
+
+      h1 {
+        max-width: 100%;
+        font-size: clamp(3.15rem, 14.5vw, 5rem);
+      }
+
+      .hero-bottom {
+        grid-template-columns: 1fr;
+        align-items: start;
+      }
+
+      .portrait {
+        min-height: 32rem;
+      }
+
+      .portrait figcaption span:last-child {
+        display: none;
+      }
+
+      .intro-band {
+        grid-template-columns: 1fr;
+      }
+
+      .intro-band .section-label,
+      .intro-statement,
+      .intro-note {
+        grid-column: 1;
+      }
+
+      .intro-note {
+        max-width: 24rem;
+      }
+
+      .section-heading {
+        grid-template-columns: 1fr;
+      }
+
+      .section-heading h2 {
+        font-size: clamp(3rem, 13.5vw, 6rem);
+      }
+
+      .project-head {
+        grid-template-columns: .45fr 1.55fr;
+        gap: .9rem;
+      }
+
+      .project-summary {
+        grid-column: 2;
+      }
+
+      .project-head .text-link {
+        grid-column: 2;
+      }
+
+      .project-visual-label {
+        transform: translateY(0);
+      }
+
+      .documents-header {
+        grid-template-columns: 1fr;
+      }
+
+      .documents-header p {
+        margin-left: 0;
+      }
+
+      .document-grid {
+        grid-template-columns: 1fr;
+        gap: 5rem;
+      }
+
+      .document-cover {
+        min-height: 25rem;
+      }
+
+      .experience {
+        grid-template-columns: 1fr;
+      }
+
+      .experience-main,
+      .experience-detail {
+        grid-column: 1;
+      }
+
+      .experience-main h2 {
+        max-width: 10ch;
+      }
+
+      .contact-action h2 {
+        font-size: clamp(3.6rem, 15vw, 6.5rem);
+      }
+
+      .site-footer {
+        grid-template-columns: 1fr auto;
+      }
+
+      .site-footer span:nth-child(2) {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor-ring" aria-hidden="true"><span class="cursor-label"></span></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <a class="skip-link" href="#main" data-i18n="skip">Zum Inhalt springen</a>
+
+  <header class="site-header">
+    <a class="wordmark" href="#top" aria-label="Abdelghani El Yagoubi, Startseite" data-i18n-aria-label="homeLabel">
+      <span>AE</span> Abdelghani El Yagoubi
+    </a>
+    <nav class="primary-nav" aria-label="Hauptnavigation" data-i18n-aria-label="navLabel">
+      <a href="#work" data-i18n="navWork">Arbeiten</a>
+      <a href="#about" data-i18n="navAbout">Über mich</a>
+      <a href="#contact" data-i18n="navContact">Kontakt</a>
+    </nav>
+    <div class="header-actions">
+      <div class="language-switcher" role="group" aria-label="Sprache wählen" data-i18n-aria-label="languageLabel">
+        <button class="language-button" type="button" data-language="de" aria-label="Deutsch" aria-pressed="true">DE</button>
+        <button class="language-button" type="button" data-language="en" aria-label="English" aria-pressed="false">EN</button>
+        <button class="language-button" type="button" data-language="fr" aria-label="Français" aria-pressed="false">FR</button>
+      </div>
+      <a class="header-mail" href="mailto:elyagoubiabdelghani3@gmail.com" data-cursor="MAIL" data-i18n="emailMe">E-Mail</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow" data-i18n="heroEyebrow">Digitaldesigner</p>
+        <h1 id="hero-title">
+          <span class="hero-title-line" data-i18n="heroLine1">Klare Ideen,</span>
+          <em data-i18n="heroLine2">sichtbar gemacht.</em>
+        </h1>
+        <div class="hero-bottom">
+          <p class="hero-intro" data-i18n="heroIntro">
+            Ich bin Abdelghani, Designer für Websites, visuelle Systeme und redaktionelle Dokumente.
+            Ich verwandle komplexe Informationen in Arbeiten, die direkt, durchdacht und leicht nutzbar sind.
+          </p>
+          <a class="text-link" href="#work"><span data-i18n="viewWork">Ausgewählte Arbeiten</span> <span aria-hidden="true">↘</span></a>
+        </div>
+      </div>
+      <figure class="portrait">
+        <img src="assets/profile.webp" alt="Illustriertes Porträt von Abdelghani El Yagoubi mit einem Pinsel" data-i18n-alt="portraitAlt" width="2400" height="1340">
+        <figcaption>
+          <span>Abdelghani El Yagoubi</span>
+          <span data-i18n="portraitRole">Designer / 2026</span>
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="intro-band reveal" id="about" aria-labelledby="about-title">
+      <p class="section-label" data-i18n="approachLabel">01 / Haltung</p>
+      <h2 class="intro-statement" id="about-title" data-i18n="approachTitle">
+        Gutes Design verlangt keine Aufmerksamkeit. Es lenkt sie auf das Wesentliche.
+      </h2>
+      <p class="intro-note" data-i18n="approachNote">
+        Meine Arbeit bewegt sich zwischen Interface-Design und umfangreichen Dokumenten,
+        mit einem Fokus auf Hierarchie, Rhythmus und nützliche Details.
+      </p>
+    </section>
+
+    <section class="work-section" id="work" aria-labelledby="work-title">
+      <div class="section-heading reveal">
+        <p class="section-label" data-i18n="selectedLabel">02 / Ausgewählte Arbeiten</p>
+        <h2 id="work-title" data-i18n="webProjects">Webprojekte</h2>
+      </div>
+
+      <article class="project reveal">
+        <div class="project-head">
+          <span class="project-index">01</span>
+          <h3>Droiders Co.</h3>
+          <p class="project-summary" data-i18n="droidersSummary">
+            Ein markanter digitaler Auftritt für ein Kollektiv digitaler Gestalter.
+            Die Bildwelt eines Bienenstocks verbindet Team, Leistungen und Kultur zu einer Geschichte.
+          </p>
+          <a class="text-link" href="https://droiders.is-a.dev/" target="_blank" rel="noopener noreferrer">
+            <span data-i18n="liveWebsite">Live-Website</span> <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <a class="project-visual" href="https://droiders.is-a.dev/" target="_blank" rel="noopener noreferrer" aria-label="Droiders-Website besuchen" data-cursor="LIVE" data-i18n-aria-label="visitDroiders">
+          <img src="assets/droiders-website.webp" alt="Startseite der Droiders-Website mit markanter Typografie in Schwarz, Weiß und Gelb" data-i18n-alt="droidersAlt" width="3200" height="1800" loading="lazy">
+          <span class="project-visual-label" data-i18n="visitLive">Live-Website besuchen ↗</span>
+        </a>
+      </article>
+
+      <article class="project reveal">
+        <div class="project-head">
+          <span class="project-index">02</span>
+          <h3>Dr. Doha Hamidallah</h3>
+          <p class="project-summary" data-i18n="dohaSummary">
+            Eine patientenorientierte medizinische Website, die fachliche Tiefe
+            mit klarer Navigation und direktem Zugang zu Termininformationen verbindet.
+          </p>
+          <a class="text-link" href="https://www.dohaophtalmologue.com/" target="_blank" rel="noopener noreferrer">
+            <span data-i18n="liveWebsite">Live-Website</span> <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <a class="project-visual" href="https://www.dohaophtalmologue.com/" target="_blank" rel="noopener noreferrer" aria-label="Website von Dr. Doha Hamidallah besuchen" data-cursor="LIVE" data-i18n-aria-label="visitDoha">
+          <img src="assets/doha-website.webp" alt="Startseite der augenärztlichen Website von Dr. Doha Hamidallah" data-i18n-alt="dohaAlt" width="3200" height="1800" loading="lazy">
+          <span class="project-visual-label" data-i18n="visitLive">Live-Website besuchen ↗</span>
+        </a>
+      </article>
+    </section>
+
+    <section class="documents" id="documents" aria-labelledby="documents-title">
+      <div class="documents-header reveal">
+        <h2 id="documents-title"><span data-i18n="documentsLine1">Dokumente,</span><br><span data-i18n="documentsLine2">gestaltet.</span></h2>
+        <p data-i18n="documentsIntro">
+          Ausgewählte Editorial-Projekte für andere Menschen: strukturiert, lesbar
+          und dafür gestaltet, viele Informationen klar zu vermitteln.
+        </p>
+      </div>
+
+      <div class="document-grid">
+        <article class="document-card reveal">
+          <a class="document-cover" href="assets/chef%20resume.pdf" target="_blank" rel="noopener" aria-label="PDF der Bewerbungsmappe Gastronomie öffnen" data-cursor="PDF" data-i18n-aria-label="openChef">
+            <img src="assets/chef-resume-cover.webp" alt="Titelseite einer für Atif Bari gestalteten Bewerbungsmappe Gastronomie" data-i18n-alt="chefAlt" width="1787" height="2527" loading="lazy">
+            <span class="document-cover-label" data-i18n="openPdf">PDF öffnen ↗</span>
+          </a>
+          <div class="document-meta">
+            <div>
+              <h3 data-i18n="chefTitle">Bewerbungsmappe Gastronomie</h3>
+              <p data-i18n="chefSubtitle">Gestaltung von Lebenslauf und Anschreiben</p>
+            </div>
+            <span class="meta" data-i18n="threePages">PDF · 3 Seiten</span>
+          </div>
+        </article>
+
+        <article class="document-card reveal">
+          <a class="document-cover" href="assets/LERNPORTFOLIO.pdf" target="_blank" rel="noopener" aria-label="PDF des Lernportfolios Pflege öffnen" data-cursor="PDF" data-i18n-aria-label="openLearning">
+            <img src="assets/lernportfolio-cover.webp" alt="Titelseite eines klinischen Lernportfolios über Verdauung und Harnwege" data-i18n-alt="learningAlt" width="1787" height="2527" loading="lazy">
+            <span class="document-cover-label" data-i18n="openPdf">PDF öffnen ↗</span>
+          </a>
+          <div class="document-meta">
+            <div>
+              <h3 data-i18n="learningTitle">Lernportfolio Pflege</h3>
+              <p data-i18n="learningSubtitle">Gestaltung eines umfangreichen Bildungsdokuments</p>
+            </div>
+            <span class="meta" data-i18n="seventeenPages">PDF · 17 Seiten</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="experience reveal" id="experience" aria-labelledby="experience-title">
+      <p class="section-label" data-i18n="experienceLabel">03 / Erfahrung</p>
+      <div class="experience-main">
+        <h2 id="experience-title"><span data-i18n="experienceLine1">Sechs Monate,</span> <span class="accent-line" data-i18n="experienceLine2">ein fokussiertes Kapitel.</span></h2>
+      </div>
+      <div class="experience-detail">
+        <strong data-i18n="roleTitle">Designer bei Droiders Co.</strong>
+        <p data-i18n="roleDescription">Sechs Monate im Digitaldesign und in der visuellen Kommunikation.</p>
+      </div>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="contact-copy">
+        <p class="section-label" data-i18n="contactLabel">04 / Kontakt</p>
+        <p data-i18n="contactCopy">
+          Sie haben eine Website, Identität oder ein Dokument, das eine klare visuelle Richtung braucht?
+          Schreiben Sie mir.
+        </p>
+      </div>
+      <div class="contact-action">
+        <h2 id="contact-title" data-i18n="contactTitle">Machen wir es klar.</h2>
+        <a class="email-link" href="mailto:elyagoubiabdelghani3@gmail.com" data-cursor="MAIL">
+          elyagoubiabdelghani3@gmail.com <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>© <span id="year">2026</span> Abdelghani El Yagoubi</span>
+    <span data-i18n="footerRole">Digitaldesigner</span>
+    <span data-i18n="footerBuilt">Mit Sorgfalt gestaltet</span>
+  </footer>
+
+  <script src="assets/gsap.min.js"></script>
+  <script src="assets/ScrollTrigger.min.js"></script>
+  <script>
+    const translations = {
+      de: {
+        metaTitle: "Abdelghani El Yagoubi — Digitaldesigner",
+        metaDescription: "Portfolio von Abdelghani El Yagoubi, Digitaldesigner für Websites und Editorial Design.",
+        skip: "Zum Inhalt springen",
+        homeLabel: "Abdelghani El Yagoubi, Startseite",
+        navLabel: "Hauptnavigation",
+        languageLabel: "Sprache wählen",
+        navWork: "Arbeiten",
+        navAbout: "Über mich",
+        navContact: "Kontakt",
+        emailMe: "E-Mail",
+        heroEyebrow: "Digitaldesigner",
+        heroLine1: "Klare Ideen,",
+        heroLine2: "sichtbar gemacht.",
+        heroIntro: "Ich bin Abdelghani, Designer für Websites, visuelle Systeme und redaktionelle Dokumente. Ich verwandle komplexe Informationen in Arbeiten, die direkt, durchdacht und leicht nutzbar sind.",
+        viewWork: "Ausgewählte Arbeiten",
+        portraitAlt: "Illustriertes Porträt von Abdelghani El Yagoubi mit einem Pinsel",
+        portraitRole: "Designer / 2026",
+        approachLabel: "01 / Haltung",
+        approachTitle: "Gutes Design verlangt keine Aufmerksamkeit. Es lenkt sie auf das Wesentliche.",
+        approachNote: "Meine Arbeit bewegt sich zwischen Interface-Design und umfangreichen Dokumenten, mit einem Fokus auf Hierarchie, Rhythmus und nützliche Details.",
+        selectedLabel: "02 / Ausgewählte Arbeiten",
+        webProjects: "Webprojekte",
+        droidersSummary: "Ein markanter digitaler Auftritt für ein Kollektiv digitaler Gestalter. Die Bildwelt eines Bienenstocks verbindet Team, Leistungen und Kultur zu einer Geschichte.",
+        liveWebsite: "Live-Website",
+        visitLive: "Live-Website besuchen ↗",
+        visitDroiders: "Droiders-Website besuchen",
+        droidersAlt: "Startseite der Droiders-Website mit markanter Typografie in Schwarz, Weiß und Gelb",
+        dohaSummary: "Eine patientenorientierte medizinische Website, die fachliche Tiefe mit klarer Navigation und direktem Zugang zu Termininformationen verbindet.",
+        visitDoha: "Website von Dr. Doha Hamidallah besuchen",
+        dohaAlt: "Startseite der augenärztlichen Website von Dr. Doha Hamidallah",
+        documentsLine1: "Dokumente,",
+        documentsLine2: "gestaltet.",
+        documentsIntro: "Ausgewählte Editorial-Projekte für andere Menschen: strukturiert, lesbar und dafür gestaltet, viele Informationen klar zu vermitteln.",
+        openPdf: "PDF öffnen ↗",
+        openChef: "PDF der Bewerbungsmappe Gastronomie öffnen",
+        chefAlt: "Titelseite einer für Atif Bari gestalteten Bewerbungsmappe Gastronomie",
+        chefTitle: "Bewerbungsmappe Gastronomie",
+        chefSubtitle: "Gestaltung von Lebenslauf und Anschreiben",
+        threePages: "PDF · 3 Seiten",
+        openLearning: "PDF des Lernportfolios Pflege öffnen",
+        learningAlt: "Titelseite eines klinischen Lernportfolios über Verdauung und Harnwege",
+        learningTitle: "Lernportfolio Pflege",
+        learningSubtitle: "Gestaltung eines umfangreichen Bildungsdokuments",
+        seventeenPages: "PDF · 17 Seiten",
+        experienceLabel: "03 / Erfahrung",
+        experienceLine1: "Sechs Monate,",
+        experienceLine2: "ein fokussiertes Kapitel.",
+        roleTitle: "Designer bei Droiders Co.",
+        roleDescription: "Sechs Monate im Digitaldesign und in der visuellen Kommunikation.",
+        contactLabel: "04 / Kontakt",
+        contactCopy: "Sie haben eine Website, Identität oder ein Dokument, das eine klare visuelle Richtung braucht? Schreiben Sie mir.",
+        contactTitle: "Machen wir es klar.",
+        footerRole: "Digitaldesigner",
+        footerBuilt: "Mit Sorgfalt gestaltet"
+      },
+      en: {
+        metaTitle: "Abdelghani El Yagoubi — Digital Designer",
+        metaDescription: "Portfolio of Abdelghani El Yagoubi, a digital designer working across websites and editorial documents.",
+        skip: "Skip to content",
+        homeLabel: "Abdelghani El Yagoubi, home",
+        navLabel: "Primary navigation",
+        languageLabel: "Choose language",
+        navWork: "Work",
+        navAbout: "About",
+        navContact: "Contact",
+        emailMe: "Email me",
+        heroEyebrow: "Digital designer",
+        heroLine1: "Clear ideas,",
+        heroLine2: "made visible.",
+        heroIntro: "I’m Abdelghani, a designer working across websites, visual systems, and editorial documents. I turn complex information into work that feels direct, considered, and easy to use.",
+        viewWork: "View selected work",
+        portraitAlt: "Illustrated portrait of Abdelghani El Yagoubi holding a paintbrush",
+        portraitRole: "Designer / 2026",
+        approachLabel: "01 / Approach",
+        approachTitle: "Good design does not ask for attention. It gives attention to the right things.",
+        approachNote: "My work moves between interface design and long-form documents, with a focus on hierarchy, rhythm, and useful detail.",
+        selectedLabel: "02 / Selected work",
+        webProjects: "Web projects",
+        droidersSummary: "A bold digital home for a collective of web makers, using the language of a hive to turn team, services, and culture into one story.",
+        liveWebsite: "Live website",
+        visitLive: "Visit live site ↗",
+        visitDroiders: "Visit the Droiders website",
+        droidersAlt: "Homepage of the Droiders website with bold black, white, and yellow typography",
+        dohaSummary: "A patient-focused medical website that balances clinical depth with clear navigation and direct access to appointment information.",
+        visitDoha: "Visit the Dr. Doha Hamidallah website",
+        dohaAlt: "Homepage of Dr. Doha Hamidallah’s ophthalmology website",
+        documentsLine1: "Documents,",
+        documentsLine2: "designed.",
+        documentsIntro: "Selected editorial projects created for other people: structured, readable, and built to carry detailed information without losing clarity.",
+        openPdf: "Open PDF ↗",
+        openChef: "Open the culinary application dossier PDF",
+        chefAlt: "Cover of a culinary application dossier designed for Atif Bari",
+        chefTitle: "Culinary application dossier",
+        chefSubtitle: "Résumé and application letter design",
+        threePages: "PDF · 3 pages",
+        openLearning: "Open the clinical learning portfolio PDF",
+        learningAlt: "Cover of a clinical learning portfolio about digestion and the urinary tract",
+        learningTitle: "Clinical learning portfolio",
+        learningSubtitle: "Long-form educational document design",
+        seventeenPages: "PDF · 17 pages",
+        experienceLabel: "03 / Experience",
+        experienceLine1: "Six months,",
+        experienceLine2: "one focused chapter.",
+        roleTitle: "Designer at Droiders Co.",
+        roleDescription: "Six months working on digital design and visual communication.",
+        contactLabel: "04 / Contact",
+        contactCopy: "Have a website, identity, or document that needs a clear visual direction? Send me a note.",
+        contactTitle: "Let’s make it clear.",
+        footerRole: "Digital designer",
+        footerBuilt: "Built with care"
+      },
+      fr: {
+        metaTitle: "Abdelghani El Yagoubi — Designer numérique",
+        metaDescription: "Portfolio d’Abdelghani El Yagoubi, designer numérique spécialisé dans les sites web et le design éditorial.",
+        skip: "Aller au contenu",
+        homeLabel: "Abdelghani El Yagoubi, accueil",
+        navLabel: "Navigation principale",
+        languageLabel: "Choisir la langue",
+        navWork: "Projets",
+        navAbout: "À propos",
+        navContact: "Contact",
+        emailMe: "M’écrire",
+        heroEyebrow: "Designer numérique",
+        heroLine1: "Des idées claires,",
+        heroLine2: "rendues visibles.",
+        heroIntro: "Je suis Abdelghani, designer de sites web, de systèmes visuels et de documents éditoriaux. Je transforme des informations complexes en réalisations directes, réfléchies et faciles à utiliser.",
+        viewWork: "Voir les projets",
+        portraitAlt: "Portrait illustré d’Abdelghani El Yagoubi tenant un pinceau",
+        portraitRole: "Designer / 2026",
+        approachLabel: "01 / Approche",
+        approachTitle: "Le bon design ne réclame pas l’attention. Il la dirige vers ce qui compte.",
+        approachNote: "Mon travail navigue entre le design d’interface et les documents longs, avec une attention particulière portée à la hiérarchie, au rythme et aux détails utiles.",
+        selectedLabel: "02 / Projets sélectionnés",
+        webProjects: "Projets web",
+        droidersSummary: "Une présence numérique forte pour un collectif de créateurs du web. L’univers de la ruche relie l’équipe, les services et la culture en un seul récit.",
+        liveWebsite: "Site en ligne",
+        visitLive: "Voir le site ↗",
+        visitDroiders: "Visiter le site de Droiders",
+        droidersAlt: "Page d’accueil de Droiders avec une typographie forte en noir, blanc et jaune",
+        dohaSummary: "Un site médical centré sur les patients, qui associe profondeur clinique, navigation claire et accès direct aux informations de rendez-vous.",
+        visitDoha: "Visiter le site de la Dr Doha Hamidallah",
+        dohaAlt: "Page d’accueil du site d’ophtalmologie de la Dr Doha Hamidallah",
+        documentsLine1: "Des documents,",
+        documentsLine2: "conçus.",
+        documentsIntro: "Une sélection de projets éditoriaux réalisés pour d’autres personnes : structurés, lisibles et conçus pour présenter des informations détaillées avec clarté.",
+        openPdf: "Ouvrir le PDF ↗",
+        openChef: "Ouvrir le PDF du dossier de candidature en cuisine",
+        chefAlt: "Couverture d’un dossier de candidature en cuisine conçu pour Atif Bari",
+        chefTitle: "Dossier de candidature — cuisine",
+        chefSubtitle: "Conception du CV et de la lettre de motivation",
+        threePages: "PDF · 3 pages",
+        openLearning: "Ouvrir le PDF du portfolio pédagogique clinique",
+        learningAlt: "Couverture d’un portfolio pédagogique clinique sur la digestion et les voies urinaires",
+        learningTitle: "Portfolio pédagogique clinique",
+        learningSubtitle: "Conception d’un document pédagogique long",
+        seventeenPages: "PDF · 17 pages",
+        experienceLabel: "03 / Expérience",
+        experienceLine1: "Six mois,",
+        experienceLine2: "un chapitre ciblé.",
+        roleTitle: "Designer chez Droiders Co.",
+        roleDescription: "Six mois consacrés au design numérique et à la communication visuelle.",
+        contactLabel: "04 / Contact",
+        contactCopy: "Vous avez un site, une identité ou un document qui a besoin d’une direction visuelle claire ? Écrivez-moi.",
+        contactTitle: "Allons à l’essentiel.",
+        footerRole: "Designer numérique",
+        footerBuilt: "Conçu avec soin"
+      }
+    };
+
+    const languageButtons = document.querySelectorAll("[data-language]");
+    const descriptionMeta = document.querySelector('meta[name="description"]');
+
+    function applyLanguage(language) {
+      const copy = translations[language] || translations.de;
+
+      document.documentElement.lang = language;
+      document.title = copy.metaTitle;
+      descriptionMeta.setAttribute("content", copy.metaDescription);
+
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const value = copy[element.dataset.i18n];
+        if (value) element.textContent = value;
+      });
+
+      document.querySelectorAll("[data-i18n-alt]").forEach((element) => {
+        const value = copy[element.dataset.i18nAlt];
+        if (value) element.setAttribute("alt", value);
+      });
+
+      document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
+        const value = copy[element.dataset.i18nAriaLabel];
+        if (value) element.setAttribute("aria-label", value);
+      });
+
+      languageButtons.forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.language === language));
+      });
+
+      try {
+        localStorage.setItem("portfolio-language", language);
+      } catch (error) {
+        // The German fallback remains fully usable when storage is unavailable.
+      }
+
+      if (window.ScrollTrigger) {
+        requestAnimationFrame(() => ScrollTrigger.refresh());
+      }
+    }
+
+    let initialLanguage = "de";
+    try {
+      const savedLanguage = localStorage.getItem("portfolio-language");
+      if (savedLanguage && translations[savedLanguage]) initialLanguage = savedLanguage;
+    } catch (error) {
+      initialLanguage = "de";
+    }
+
+    languageButtons.forEach((button) => {
+      button.addEventListener("click", () => applyLanguage(button.dataset.language));
+    });
+
+    applyLanguage(initialLanguage);
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function initMotion() {
+      if (!window.gsap || !window.ScrollTrigger) return;
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      function initDesignerCursor() {
+        if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+        const ring = document.querySelector(".cursor-ring");
+        const dot = document.querySelector(".cursor-dot");
+        const label = document.querySelector(".cursor-label");
+        const reduceCursorMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+        document.documentElement.classList.add("has-designer-cursor");
+        gsap.set([ring, dot], { xPercent: -50, yPercent: -50 });
+        gsap.set(dot, { rotation: 45 });
+
+        const dotX = gsap.quickTo(dot, "x", {
+          duration: reduceCursorMotion ? 0 : 0.08,
+          ease: "power3.out"
+        });
+        const dotY = gsap.quickTo(dot, "y", {
+          duration: reduceCursorMotion ? 0 : 0.08,
+          ease: "power3.out"
+        });
+        const ringX = gsap.quickTo(ring, "x", {
+          duration: reduceCursorMotion ? 0 : 0.28,
+          ease: "power3.out"
+        });
+        const ringY = gsap.quickTo(ring, "y", {
+          duration: reduceCursorMotion ? 0 : 0.28,
+          ease: "power3.out"
+        });
+
+        window.addEventListener("pointermove", (event) => {
+          dotX(event.clientX);
+          dotY(event.clientY);
+          ringX(event.clientX);
+          ringY(event.clientY);
+          gsap.to([ring, dot], {
+            autoAlpha: 1,
+            duration: reduceCursorMotion ? 0 : 0.18,
+            overwrite: "auto"
+          });
+        }, { passive: true });
+
+        document.querySelectorAll("a, button").forEach((element) => {
+          element.addEventListener("pointerenter", () => {
+            const cursorText = element.dataset.cursor || "";
+            label.textContent = cursorText;
+            gsap.to(ring, {
+              scale: cursorText ? 1.6 : 1.28,
+              backgroundColor: "var(--signal)",
+              borderColor: "var(--ink)",
+              duration: reduceCursorMotion ? 0 : 0.24,
+              ease: "power3.out",
+              overwrite: "auto"
+            });
+            gsap.to(label, {
+              autoAlpha: cursorText ? 1 : 0,
+              duration: reduceCursorMotion ? 0 : 0.16,
+              overwrite: "auto"
+            });
+            gsap.to(dot, {
+              scale: 0.5,
+              duration: reduceCursorMotion ? 0 : 0.18,
+              overwrite: "auto"
+            });
+          });
+
+          element.addEventListener("pointerleave", () => {
+            gsap.to(ring, {
+              scale: 1,
+              backgroundColor: "rgba(232, 236, 233, 0.08)",
+              borderColor: "var(--accent)",
+              duration: reduceCursorMotion ? 0 : 0.24,
+              ease: "power3.out",
+              overwrite: "auto"
+            });
+            gsap.to(label, {
+              autoAlpha: 0,
+              duration: reduceCursorMotion ? 0 : 0.12,
+              overwrite: "auto"
+            });
+            gsap.to(dot, {
+              scale: 1,
+              duration: reduceCursorMotion ? 0 : 0.18,
+              overwrite: "auto"
+            });
+          });
+        });
+
+        document.documentElement.addEventListener("mouseleave", () => {
+          gsap.to([ring, dot], {
+            autoAlpha: 0,
+            duration: reduceCursorMotion ? 0 : 0.18,
+            overwrite: "auto"
+          });
+        });
+
+        document.addEventListener("pointerdown", () => {
+          gsap.to(ring, {
+            scale: 0.86,
+            duration: reduceCursorMotion ? 0 : 0.12,
+            overwrite: "auto"
+          });
+        });
+
+        document.addEventListener("pointerup", (event) => {
+          const interactive = event.target.closest?.("a, button");
+          gsap.to(ring, {
+            scale: interactive ? (interactive.dataset.cursor ? 1.6 : 1.28) : 1,
+            duration: reduceCursorMotion ? 0 : 0.18,
+            ease: "power2.out",
+            overwrite: "auto"
+          });
+        });
+      }
+
+      initDesignerCursor();
+
+      const motion = gsap.matchMedia();
+      motion.add(
+        {
+          isDesktop: "(min-width: 981px)",
+          isMobile: "(max-width: 980px)",
+          reduceMotion: "(prefers-reduced-motion: reduce)"
+        },
+        (context) => {
+          const { isDesktop, reduceMotion } = context.conditions;
+          if (reduceMotion) {
+            gsap.from(
+              ".site-header, .eyebrow, .hero-title-line, #hero-title em, .hero-intro, .portrait",
+              {
+                autoAlpha: 0,
+                duration: 0.32,
+                stagger: 0.035,
+                ease: "none"
+              }
+            );
+
+            ScrollTrigger.batch(".reveal", {
+              start: "top 95%",
+              once: true,
+              onEnter: (elements) => gsap.from(elements, {
+                autoAlpha: 0,
+                duration: 0.24,
+                stagger: 0.03,
+                ease: "none"
+              })
+            });
+            return;
+          }
+
+          const heroTimeline = gsap.timeline({
+            defaults: { duration: 0.7, ease: "power3.out" }
+          });
+
+          heroTimeline
+            .from(".site-header", {
+              y: -24,
+              autoAlpha: 0,
+              duration: 0.55
+            })
+            .from(".eyebrow", {
+              x: -24,
+              autoAlpha: 0,
+              duration: 0.45
+            }, "-=0.2")
+            .from(".hero-title-line, #hero-title em", {
+              yPercent: 110,
+              autoAlpha: 0,
+              stagger: 0.12,
+              duration: 0.85,
+              ease: "power4.out"
+            }, "-=0.12")
+            .from(".hero-intro", {
+              y: 24,
+              autoAlpha: 0,
+              duration: 0.6
+            }, "-=0.5")
+            .from(".hero-bottom .text-link", {
+              x: 24,
+              autoAlpha: 0,
+              duration: 0.5
+            }, "<0.08")
+            .from(".portrait", {
+              xPercent: isDesktop ? 8 : 0,
+              yPercent: isDesktop ? 0 : 4,
+              autoAlpha: 0,
+              duration: 0.95
+            }, 0.12)
+            .from(".portrait figcaption", {
+              yPercent: 100,
+              duration: 0.5,
+              ease: "power2.out"
+            }, "-=0.35");
+
+          gsap.timeline({
+            scrollTrigger: {
+              trigger: "#about",
+              start: "top 78%",
+              once: true
+            },
+            defaults: { ease: "power3.out" }
+          })
+            .from("#about .section-label", {
+              x: -28,
+              autoAlpha: 0,
+              duration: 0.5
+            })
+            .from("#about .intro-statement", {
+              y: 48,
+              autoAlpha: 0,
+              duration: 0.8
+            }, "-=0.25")
+            .from("#about .intro-note", {
+              y: 28,
+              autoAlpha: 0,
+              duration: 0.55
+            }, "-=0.4");
+
+          gsap.timeline({
+            scrollTrigger: {
+              trigger: ".section-heading",
+              start: "top 82%",
+              once: true
+            },
+            defaults: { ease: "power3.out" }
+          })
+            .from(".section-heading .section-label", {
+              x: -28,
+              autoAlpha: 0,
+              duration: 0.5
+            })
+            .from(".section-heading h2", {
+              y: 52,
+              autoAlpha: 0,
+              duration: 0.8
+            }, "-=0.28");
+
+          gsap.utils.toArray(".project").forEach((project) => {
+            const projectDetails = project.querySelectorAll(
+              ".project-index, h3, .project-summary, .project-head .text-link"
+            );
+            const visual = project.querySelector(".project-visual");
+
+            gsap.timeline({
+              scrollTrigger: {
+                trigger: project,
+                start: "top 78%",
+                once: true
+              },
+              defaults: { ease: "power3.out" }
+            })
+              .from(projectDetails, {
+                y: 26,
+                autoAlpha: 0,
+                stagger: 0.08,
+                duration: 0.58
+              })
+              .from(visual, {
+                y: 48,
+                autoAlpha: 0,
+                duration: 0.8
+              }, "-=0.25");
+
+            if (isDesktop) {
+              const image = visual.querySelector("img");
+              gsap.fromTo(image, {
+                yPercent: -2,
+                scale: 1.06
+              }, {
+                yPercent: 2,
+                scale: 1.06,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: visual,
+                  start: "top bottom",
+                  end: "bottom top",
+                  scrub: 1
+                }
+              });
+            }
+          });
+
+          gsap.timeline({
+            scrollTrigger: {
+              trigger: "#documents",
+              start: "top 75%",
+              once: true
+            },
+            defaults: { ease: "power3.out" }
+          })
+            .from("#documents .documents-header > *", {
+              y: 42,
+              autoAlpha: 0,
+              stagger: 0.12,
+              duration: 0.68
+            })
+            .from("#documents .document-card", {
+              y: 54,
+              autoAlpha: 0,
+              stagger: 0.14,
+              duration: 0.78
+            }, "-=0.28");
+
+          gsap.timeline({
+            scrollTrigger: {
+              trigger: "#experience",
+              start: "top 78%",
+              once: true
+            },
+            defaults: { ease: "power3.out" }
+          })
+            .from("#experience .section-label", {
+              x: -28,
+              autoAlpha: 0,
+              duration: 0.5
+            })
+            .from("#experience h2", {
+              y: 48,
+              autoAlpha: 0,
+              duration: 0.78
+            }, "-=0.25")
+            .from("#experience .experience-detail", {
+              y: 28,
+              autoAlpha: 0,
+              duration: 0.58
+            }, "-=0.38");
+
+          gsap.timeline({
+            scrollTrigger: {
+              trigger: "#contact",
+              start: "top 80%",
+              once: true
+            },
+            defaults: { ease: "power3.out" }
+          })
+            .from("#contact .contact-copy > *", {
+              x: -28,
+              autoAlpha: 0,
+              stagger: 0.1,
+              duration: 0.55
+            })
+            .from("#contact h2", {
+              y: 52,
+              autoAlpha: 0,
+              duration: 0.8
+            }, "-=0.35")
+            .from("#contact .email-link", {
+              y: 22,
+              autoAlpha: 0,
+              duration: 0.55
+            }, "-=0.35");
+
+          gsap.from(".site-footer > span", {
+            y: 14,
+            autoAlpha: 0,
+            stagger: 0.08,
+            duration: 0.5,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: ".site-footer",
+              start: "top 96%",
+              once: true
+            }
+          });
+
+          if (isDesktop) {
+            gsap.fromTo(".portrait img", {
+              yPercent: -2,
+              scale: 1.06
+            }, {
+              yPercent: 4,
+              scale: 1.06,
+              ease: "none",
+              scrollTrigger: {
+                trigger: ".hero",
+                start: "top top",
+                end: "bottom top",
+                scrub: 1
+              }
+            });
+          }
+        }
+      );
+
+      const refresh = () => ScrollTrigger.refresh();
+      window.addEventListener("load", refresh, { once: true });
+      if (document.fonts?.ready) document.fonts.ready.then(refresh);
+
+      Promise.allSettled(
+        [...document.images].map((image) => {
+          if (image.complete) return Promise.resolve();
+          return image.decode ? image.decode() : new Promise((resolve) => {
+            image.addEventListener("load", resolve, { once: true });
+            image.addEventListener("error", resolve, { once: true });
+          });
+        })
+      ).then(refresh);
+    }
+
+    initMotion();
+  </script>
+</body>
+</html>
